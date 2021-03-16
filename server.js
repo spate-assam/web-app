@@ -15,8 +15,8 @@ app.use(cors());
 const auth = require('./routes/auth');
 const disaster = require('./routes/disaster');
 
-const dbURI = 'mongodb://localhost/nitr-app';
-// const dbURI = process.env.MONGODB_URI;
+// const dbURI = 'mongodb://localhost/nitr-app';
+const dbURI = process.env.MONGODB_URI;
 
 mongoose.connect(dbURI, {
     useNewUrlParser: true,
