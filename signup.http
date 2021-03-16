@@ -1,0 +1,17 @@
+# USER SIGN IN
+ POST  http://localhost:3000/api/signup
+Content-Type: application/json
+
+{
+    "name": "Bhargab",
+    "phone": "9365698129",
+    "latitude": "91.7635072",
+    "longitude": "26.158694399999998" 
+}
+
+# POST  http://localhost:3000/api/verifyOTP
+# Content-Type: application/json
+
+# {
+#     "phone": "9365698129",
+# }
