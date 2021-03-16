@@ -13,6 +13,7 @@ app.use(cookieParser());
 app.use(cors());
 
 const auth = require('./routes/auth');
+const disaster = require('./routes/disaster');
 
 const dbURI = 'mongodb://localhost/nitr-app';
 // const dbURI = process.env.MONGODB_URI;
@@ -27,6 +28,7 @@ mongoose.connect(dbURI, {
     .catch((err) => console.log(err));
 
 app.use('/api', auth);
+app.use('/api', disaster);
 
 const PORT = process.env.PORT || 3000;
 
