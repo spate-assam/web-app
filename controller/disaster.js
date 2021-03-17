@@ -5,10 +5,10 @@ exports.all_locations_post = async (req, res) => {
         console.log(req.body);
         const { latitude, longitude } = req.body;
         const disaster = new Disaster({
-            location: [{
+            location: {
                 latitude,
                 longitude
-            }]
+            }
         });
         await disaster.save();
         res.json({ flooded_location: disaster });

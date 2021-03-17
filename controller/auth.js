@@ -12,7 +12,7 @@ const createToken = user => {
 exports.phone_signup = async (req, res) => {
     try {
         console.log(req.body);
-        const data = await client.verify.services('VA3c52b95816d50423533e0be1e3f4c20d').verifications.create({
+        const data = await client.verify.services('VAa7a8c5284c4cef8b90e0576a19e3e315').verifications.create({
             to: `+91${req.body.phone}`,
             channel: 'sms'
         });

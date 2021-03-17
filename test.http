@@ -1,13 +1,13 @@
 # USER SIGN IN
-#  POST  http://localhost:3000/api/signup
-# Content-Type: application/json
+POST  http://localhost:5000/api/signup
+Content-Type: application/json
 
-# {
-#     "name": "Bhargab",
-#     "phone": "9365698129",
-#     "latitude": "91.7635072",
-#     "longitude": "26.158694399999998" 
-# }
+{
+    "name": "Bhargab",
+    "phone": "9365698129",
+    "latitude": "91.7635072",
+    "longitude": "26.158694399999998" 
+}
 
 # POST  http://localhost:3000/api/verifyOTP
 # Content-Type: application/json
@@ -17,7 +17,7 @@
 # }
 
 # Admin Signup
-#  POST  http://localhost:3000/api/admin/signup
+# POST  http://localhost:5000/api/admin/signup
 # Content-Type: application/json
 
 # {
@@ -38,10 +38,10 @@
 #     "code": "123456"
 # }
 
-POST http://localhost:3000/api/get/locations
-Content-Type: application/json
+# POST http://localhost:5000/api/get/locations
+# Content-Type: application/json
 
-{
-    "latitude": 9867654321,
-    "longitude": 123456789
-}
+# {
+#     "latitude": 26.5260594,
+#     "longitude": 90.7961624
+# }
