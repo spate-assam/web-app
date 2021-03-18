@@ -4,6 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const client = require('twilio')(process.env.ACCOUNT_SID, process.env.AUTH_TOKEN);
 
 const app = express();
 

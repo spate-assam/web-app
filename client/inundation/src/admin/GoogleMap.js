@@ -11,17 +11,6 @@ const GoogleMap = ({ floodedLocations, center, zoom }) => {
     const [latitude, setLatitude] = useState([]);
     const [longitude, setLongitude] = useState([]);
 
-    const getData = () => {
-        return floodedLocations.map(loc => {
-            console.log(loc.location);
-            setLatitude(loc.location.latitide);
-            setLongitude(loc.location.longitude);
-        });
-    }
-
-    // const origins = ['Pathsala'];
-    // const destinations = ['Patacharkuchi','Howly', 'Barpeta', 'Guwahati', 'nalbari'];
-
     const markers = floodedLocations.map((f_loc, i) => {
         return <LocationMarker
             key={i}

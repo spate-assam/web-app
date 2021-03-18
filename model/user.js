@@ -14,19 +14,17 @@ const UserSchema = mongoose.Schema({
     },
     default_lat: {
         type: String,
-        required: true
+        // required: true
     },
     default_long: {
         type: String,
-        required: true
+        // required: true
     },
     live_lat: {
-        type: String,
-        required: true
+        type: String
     },
     live_long: {
-        type: String,
-        required: true
+        type: String
     },
     affected: {
         type: Boolean,
