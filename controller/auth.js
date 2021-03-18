@@ -129,7 +129,7 @@ exports.admin_otp_verify = async (req, res) => {
                     phone,
                     name,
                     role,
-                    default_lat, 
+                    default_lat,
                     default_long
                 });
                 await newUser.save();
@@ -157,3 +157,8 @@ exports.signout = (req, res) => {
     res.clearCookie('t');
     return res.json({ message: 'Signout success' });
 };
+
+exports.get_all_users = async (req, res) => {
+    const users = await User.find({});
+    res.json({ users });
+}
