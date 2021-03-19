@@ -1,19 +1,20 @@
 import React, { Component } from "react";
 
 export default class Login extends Component {
+
     render() {
         return (
             <form>
                 <h3>Login</h3>
 
                 <div className="form-group">
-                    <label>Email address</label>
-                    <input type="email" className="form-control" placeholder="Enter email" />
+                    <label>Phone Number</label>
+                    <input type="email" className="form-control" placeholder="Enter Number" />
                 </div>
 
                 <div className="form-group">
-                    <label>Phone No.</label>
-                    <input type="password" className="form-control" placeholder="Enter password" />
+                    <label>Location</label>
+                    <input type="password" className="form-control" placeholder="Enter Location" />
                 </div>
 
                 <div className="form-group">
@@ -23,9 +24,9 @@ export default class Login extends Component {
                     </div>
                 </div>
 
-                <button type="Enter" className="btn btn-primary btn-block">Enter</button>
+                <button type="Enter" className="btn btn-primary btn-block">Send OTP</button>
                 <p className="forgot-password text-right">
-                    Forgot <a href="#">password?</a>
+                    {/* Forgot <a href="./home.js">password?</a> */}
                 </p>
             </form>
         );

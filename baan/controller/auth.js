@@ -1,6 +1,12 @@
-const User = require('../model/user');
+const dotenv = require('dotenv');
+dotenv.config();
 const jwt = require('jsonwebtoken');
-const client = require('twilio')(process.env.ACCOUNT_SID, process.env.AUTH_TOKEN);
+
+const User = require('../model/user');
+
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const client = require('twilio')(accountSid, authToken);
 
 const maxAge = 3 * 24 * 60 * 60;
 const createToken = user => {
@@ -12,7 +18,7 @@ const createToken = user => {
 exports.phone_signup = async (req, res) => {
     try {
         console.log(req.body);
-        const data = await client.verify.services('VA3c52b95816d50423533e0be1e3f4c20d').verifications.create({
+        const data = await client.verify.services(process.env.TWILIO_SERVICE_ID).verifications.create({
             to: `+91${req.body.phone}`,
             channel: 'sms'
         });
@@ -23,6 +29,7 @@ exports.phone_signup = async (req, res) => {
             return res.json({ error: 'Sorry! Please input a valid phone number!' });
         }
     } catch (err) {
+        console.log(err);
         return res.json({ error: 'Some error occured!!!', err });
     }
 };
@@ -30,10 +37,8 @@ exports.phone_signup = async (req, res) => {
 exports.verifyOTP = async (req, res) => {
     try {
         console.log(req.body);
-        // res.send('OKAY');
-        const { phone, code, name, latitude, longitude } = req.body;
-        // console.log(req.body);
-        const data = await client.verify.services('VA3c52b95816d50423533e0be1e3f4c20d').verificationChecks.create({
+        const { phone, code, name, default_loc } = req.body;
+        const data = await client.verify.services('VAc9f4c6e99c3103c020c574b42ca391a6').verificationChecks.create({
             to: `+91${phone}`,
             code
         });
@@ -55,10 +60,7 @@ exports.verifyOTP = async (req, res) => {
                 const newUser = new User({
                     phone,
                     name,
-                    location: {
-                        latitude,
-                        longitude
-                    }
+                    default_loc
                 });
                 await newUser.save();
 
@@ -84,8 +86,7 @@ exports.verifyOTP = async (req, res) => {
 exports.admin_phone_signup = async (req, res) => {
     try {
         console.log(req.body);
-        // res.send('okay');
-        const data = await client.verify.services('VA3c52b95816d50423533e0be1e3f4c20d').verifications.create({
+        const data = await client.verify.services(process.env.TWILIO_SERVICE_ID).verifications.create({
             to: `+91${req.body.phone}`,
             channel: 'sms'
         });
@@ -103,8 +104,8 @@ exports.admin_phone_signup = async (req, res) => {
 exports.admin_otp_verify = async (req, res) => {
     try {
         console.log(req.body);
-        const { phone, code, name, latitude, longitude } = req.body;
-        const data = await client.verify.services('VA3c52b95816d50423533e0be1e3f4c20d').verificationChecks.create({
+        const { phone, code, name, default_loc, role } = req.body;
+        const data = await client.verify.services(process.env.TWILIO_SERVICE_ID).verificationChecks.create({
             to: `+91${phone}`,
             code
         });
@@ -126,7 +127,8 @@ exports.admin_otp_verify = async (req, res) => {
                 const newUser = new User({
                     phone,
                     name,
-                    role
+                    role,
+                    default_loc
                 });
                 await newUser.save();
 
@@ -153,3 +155,12 @@ exports.signout = (req, res) => {
     res.clearCookie('t');
     return res.json({ message: 'Signout success' });
 };
+
+exports.get_all_users = async (req, res) => {
+    const users = await User.find({
+        role: {
+            $ne: 1
+        }
+    });
+    res.json({ users });
+}

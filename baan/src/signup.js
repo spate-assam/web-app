@@ -8,32 +8,24 @@ export default class SignUp extends Component {
       errors: {},
 
     };
-    this.state = this.initialState();
-    this.handlePlaceSelect = this.handlePlaceSelect.bind(this);
+    // this.state = this.initialState();
+    // this.handlePlaceSelect = this.handlePlaceSelect.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.autocomplete = null;
+    // this.autocomplete = null;
   }
-  componentDidMount() {
-    let google = window.google;
-    this.autocomplete = new google.maps.places.Autocomplete(
-      document.getElementById("autocomplete"),
-      {}
-    );
-  }
-  initialState() {
-    return {
-      name: "",
-      location:""
-    };
-  }
+
+  // initialState() {
+  //   return {
+  //     name: "",
+  //   };
+  // }
   handleChange(event) {
     let input = this.state.input;
     input[event.target.name] = event.target.value;
 
     this.setState({
       input,
-      [event.target.name]: event.target.value,
     });
   }
 
@@ -47,7 +39,6 @@ export default class SignUp extends Component {
       input["name"] = "";
       input["email"] = "";
       input["phone"] = "";
-      input["location"]="";
       this.setState({
         input: input,
       });
@@ -55,12 +46,7 @@ export default class SignUp extends Component {
       alert("Form is submited");
     }
   }
-  handlePlaceSelect() {
-    let addressObject = this.autocomplete.getPlace();
-    this.setState({
-      name: addressObject.name,
-    });
-  }
+
 
   validate() {
     let input = this.state.input;
@@ -161,7 +147,7 @@ export default class SignUp extends Component {
           Send OTP{" "}
         </button>{" "}
         <p className="forgot-password text-right">
-          Already registered <a href="#"> sign in ? </a>{" "}
+          Already registered <a href="./login.js"> sign in ? </a>{" "}
         </p>{" "}
       </form>
     );
