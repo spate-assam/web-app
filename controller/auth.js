@@ -37,7 +37,7 @@ exports.phone_signup = async (req, res) => {
 exports.verifyOTP = async (req, res) => {
     try {
         console.log(req.body);
-        const { phone, code, name, latitude, longitude } = req.body;
+        const { phone, code, name, default_loc } = req.body;
         const data = await client.verify.services('VAc9f4c6e99c3103c020c574b42ca391a6').verificationChecks.create({
             to: `+91${phone}`,
             code
@@ -60,8 +60,7 @@ exports.verifyOTP = async (req, res) => {
                 const newUser = new User({
                     phone,
                     name,
-                    default_lat,
-                    default_long
+                    default_loc
                 });
                 await newUser.save();
 
@@ -105,7 +104,7 @@ exports.admin_phone_signup = async (req, res) => {
 exports.admin_otp_verify = async (req, res) => {
     try {
         console.log(req.body);
-        const { phone, code, name, default_lat, default_long, role } = req.body;
+        const { phone, code, name, default_loc, role } = req.body;
         const data = await client.verify.services(process.env.TWILIO_SERVICE_ID).verificationChecks.create({
             to: `+91${phone}`,
             code
@@ -129,8 +128,7 @@ exports.admin_otp_verify = async (req, res) => {
                     phone,
                     name,
                     role,
-                    default_lat,
-                    default_long
+                    default_loc
                 });
                 await newUser.save();
 
