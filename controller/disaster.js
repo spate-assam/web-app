@@ -1,4 +1,12 @@
+const dotenv = require('dotenv');
+dotenv.config();
+
 const distance = require('distance-matrix-api');
+
+//TWILIO
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const client = require('twilio')(accountSid, authToken);
 
 const Disaster = require('../model/disaster');
 const User = require('../model/user');
@@ -92,4 +100,24 @@ exports.compare_distance = async (req, res) => {
     } catch (error) {
         console.log(error);
     }
+}
+
+exports.send_aware_message = async (req, res) => {
+    const users = await User.find({
+        affected_verify: true,
+        role: {
+            $ne: 1
+        }
+    });
+
+    users.map(user => {
+        client.messages
+            .create({
+                body: 'Beware! Your area is identified as severly flood-affected by Govt. of Assam. We hope you are safe and healthy! - Team Inundation, Govt. of Assam',
+                messagingServiceSid: 'MG3b2e919b1ef67c8abce7438bd6d89374',
+                to: `+91${user.phone}`
+            }).then(message => console.log(message))
+            .done();
+    });
+    res.json({ sucess: 'Sent awareness message sucessfully!', users });
 }
