@@ -159,6 +159,10 @@ exports.signout = (req, res) => {
 };
 
 exports.get_all_users = async (req, res) => {
-    const users = await User.find({});
+    const users = await User.find({
+        role: {
+            $ne: 1
+        }
+    });
     res.json({ users });
 }

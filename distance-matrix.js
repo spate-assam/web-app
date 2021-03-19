@@ -1,7 +1,7 @@
 const distance = require('distance-matrix-api');
  
-const origins = ['Pathsala'];
-const destinations = ['Patacharkuchi','Howly', 'Barpeta', 'Guwahati', 'nalbari'];
+const origins = ["26.5143257,93.9483617","26.5430797,91.9071653"];
+const destinations = ["26.4159862,91.0637408","26.5105954,90.6228871","26.5143257,93.9483617","27.1709036,93.868768","26.5260594,90.7961624"];
  
 distance.key('AlphaDMABzEE8y03t0VsipsvR1z7fkZDiU7Erqmy');
 distance.units('metric');

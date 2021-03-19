@@ -1,11 +1,6 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment } from "react";
 
-const mapStyles = {
-    width: '100%',
-    height: '100%'
-};
-
-const Disasters = ({ floodedLocations }) => {
+const Disasters = () => {
     return (
         <Fragment>
             <div className="container">

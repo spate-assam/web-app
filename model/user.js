@@ -12,18 +12,11 @@ const UserSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
-    default_lat: {
+    default_loc: {
         type: String,
-        // required: true
+        required: true
     },
-    default_long: {
-        type: String,
-        // required: true
-    },
-    live_lat: {
-        type: String
-    },
-    live_long: {
+    live_loc: {
         type: String
     },
     affected: {
