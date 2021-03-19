@@ -4,4 +4,4 @@ node_modules
 .client
 .distance-matrix.js
 .twilio
-.bulk-message.js
+./bulk-message.js
