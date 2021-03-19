@@ -22,6 +22,10 @@ const UserSchema = mongoose.Schema({
     affected: {
         type: Boolean,
         default: false
+    },
+    affected_verify: {
+        type: Boolean,
+        default: false
     }
 });
 

@@ -62,6 +62,8 @@ exports.compare_distance = async (req, res) => {
                                     default_loc: origins[i],
                                     role: { $ne: 1 }
                                 });
+                                users[0].affected_verify = true;
+                                await users[0].save()
                                 userLocationsArray.push(users[0]);
                             }
                         } else {
@@ -80,7 +82,7 @@ exports.compare_distance = async (req, res) => {
                             default_loc: userLocationsArray.find(user => user.phone === phone).default_loc
                         }
                     });
-                    
+
                 return res.json({
                     success: 'Notify users living within this location!',
                     distinctUsersAffcted: distinctUsers
