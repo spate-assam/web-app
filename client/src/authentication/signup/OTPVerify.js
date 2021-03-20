@@ -26,7 +26,7 @@ function OtpVerify(props) {
 		axios.post('http://localhost:5000/api/verifyOTP', {
 			phone: `${value.phone}`,
 			code: `${value.code}`,
-			username: `${value.name}`,
+			name: `${value.name}`,
 			default_loc: `${value.default_loc}`,
 			// role: `${value.role}`,
 		})

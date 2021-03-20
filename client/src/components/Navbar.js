@@ -22,15 +22,21 @@ const Navbar = ({ history }) => {
                         <ul class="navbar-nav">
 
                             {/* {isAuthenticated() && ( */}
-                                <li class="nav-item">
-                                    <Link class="nav-link active" aria-current="page" to="/">Home</Link>
-                                </li>
+                            <li class="nav-item">
+                                <Link class="nav-link active" aria-current="page" to="/">Home</Link>
+                            </li>
                             {/* )} */}
 
                             {isAuthenticated() && isAuthenticated().role === 1 && (
-                                <li class="nav-item">
-                                    <Link class="nav-link active" aria-current="page" to="/manage">Manage</Link>
-                                </li>
+                                <Fragment>
+                                    <li class="nav-item">
+                                        <Link class="nav-link active" aria-current="page" to="/affected-locations">Affected Locations</Link>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <Link class="nav-link active" aria-current="page" to="/manage">Manage</Link>
+                                    </li>
+                                </Fragment>
                             )}
 
                             {!isAuthenticated() && (

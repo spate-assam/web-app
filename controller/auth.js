@@ -162,3 +162,13 @@ exports.get_all_users = async (req, res) => {
     });
     res.json({ users });
 }
+
+exports.get_affected_user = async (req, res) => {
+    const users = await User.find({
+        role: {
+            $ne: 1
+        },
+        affected_verify: true
+    });
+    res.json({ users });
+}

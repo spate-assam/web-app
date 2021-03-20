@@ -11,9 +11,10 @@ const User = require('../model/user');
 exports.all_locations_post = async (req, res) => {
     try {
         console.log(req.body);
-        const { coordinates } = req.body;
+        const { coordinates, level } = req.body;
         const disaster = new Disaster({
-            coordinates
+            coordinates,
+            level
         });
         await disaster.save();
         res.json({ flooded_location: disaster });
