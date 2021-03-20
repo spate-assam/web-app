@@ -1,5 +1,4 @@
 import React, { Fragment, useState, useEffect } from "react";
-import Disasters from "./Disasters";
 import GoogleMap from "../admin/GoogleMap";
 
 const Home = () => {
@@ -32,7 +31,6 @@ const Home = () => {
         <Fragment>
             <div className="container">
                 <h4>Home Page</h4>
-                <Disasters />
                 <GoogleMap
                     floodedLocations={floodedLocations}
                     users={users}

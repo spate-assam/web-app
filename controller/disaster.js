@@ -92,32 +92,38 @@ exports.compare_distance = async (req, res) => {
                     });
 
                 return res.json({
+                    size: distinctUsers.length,
                     success: 'Notify users living within this location!',
-                    distinctUsersAffcted: distinctUsers
+                    distinctUsersAffected: distinctUsers
                 });
             }
         });
     } catch (error) {
         console.log(error);
+        return res.json({ error });
     }
 }
 
 exports.send_aware_message = async (req, res) => {
-    const users = await User.find({
-        affected_verify: true,
-        role: {
-            $ne: 1
-        }
-    });
+    try {
+        const users = await User.find({
+            affected_verify: true,
+            role: {
+                $ne: 1
+            }
+        });
 
-    users.map(user => {
-        client.messages
-            .create({
-                body: 'Beware! Your area is identified as severly flood-affected by Govt. of Assam. We hope you are safe and healthy! - Team Inundation, Govt. of Assam',
-                messagingServiceSid: 'MG3b2e919b1ef67c8abce7438bd6d89374',
-                to: `+91${user.phone}`
-            }).then(message => console.log(message))
-            .done();
-    });
-    res.json({ sucess: 'Sent awareness message sucessfully!', users });
+        users.map(user => {
+            client.messages
+                .create({
+                    body: 'Beware! Your area is identified as severly flood-affected by Govt. of Assam. We hope you are safe and healthy! - Team Inundation, Govt. of Assam',
+                    messagingServiceSid: 'MG3b2e919b1ef67c8abce7438bd6d89374',
+                    to: `+91${user.phone}`
+                }).then(message => console.log(message))
+                .done();
+        });
+        res.json({ success: 'Sent awareness message sucessfully!', users });
+    } catch (err) {
+        return res.json({ err });
+    }
 }

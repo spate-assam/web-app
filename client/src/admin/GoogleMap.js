@@ -40,7 +40,6 @@ const GoogleMap = ({ floodedLocations, center, zoom, users }) => {
 
     return (
         <Fragment>
-            <h4>Users' Colection Page</h4>
             <UserCollection floodedLocations={floodedLocations} users={users} />
 
             <div className="map">
