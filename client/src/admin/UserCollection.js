@@ -14,23 +14,23 @@ const UserCollection = ({ users, floodedLocations }) => {
             setAffectedUsers(data.distinctUsersAffected);
             setSuccessMessage(data.success);
         })
-        .catch(err => {
-            console.log(err);
-           setErrorMessage(err);
-        });
+            .catch(err => {
+                console.log(err);
+                setErrorMessage(err);
+            });
     }
 
     const notifyUser = () => {
         return fetch(`http://localhost:5000/api/send-aware-message`).then(res => {
             return res.json()
         })
-        .then(data => {
-            setSuccessMessage(data.success);
-        })
-        .catch(err => {
-            console.log(err);
-            setErrorMessage(err);
-        });
+            .then(data => {
+                setSuccessMessage(data.success);
+            })
+            .catch(err => {
+                console.log(err);
+                setErrorMessage(err);
+            });
     }
 
     return (
@@ -38,13 +38,16 @@ const UserCollection = ({ users, floodedLocations }) => {
             <AlertMessage msg={errorMessage} type="danger" ></AlertMessage>
             <AlertMessage msg={successMessage} type="success" ></AlertMessage>
 
-            <button onClick={fetchAffectedUsers} className="btn btn-info">
-                Check affected user
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <button onClick={fetchAffectedUsers} className="btn btn-info m-2">
+                    Check affected user
             </button>
 
-            <button onClick={notifyUser} className="btn btn-warning">
-                Notify all users
+                <button onClick={notifyUser} className="btn btn-warning m-2">
+                    Notify all users
             </button>
+            </div>
+
         </Fragment >
     )
 }

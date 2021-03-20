@@ -2,7 +2,9 @@ import React, { Fragment } from 'react';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+import { isAuthenticated, signout } from '../authentication/authorize';
+
+const Navbar = ({ history }) => {
     return (
         <Fragment>
             <nav class="navbar-expand-lg navbar navbar-dark bg-dark">
@@ -12,11 +14,55 @@ const Navbar = () => {
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
+
                         <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <Link class="nav-link active" aria-current="page" to="/">Home</Link>
-                            </li>
+
+                            {isAuthenticated() && isAuthenticated().role === 1 && (
+                                <li class="nav-item">
+                                    <Link class="nav-link active" aria-current="page" to="/">Home</Link>
+                                </li>
+                            )}
+
+                            {!isAuthenticated() && (
+                                <Fragment>
+                                    <li className="nav-item">
+                                        <Link
+                                            className="nav-link"
+                                            to="/signin"
+                                        >
+                                            Signin
+                                        </Link>
+                                    </li>
+
+                                    <li className="nav-item">
+                                        <Link
+                                            className="nav-link"
+                                            to="/signup"
+                                        >
+                                            Signup
+                                        </Link>
+                                    </li>
+                                </Fragment>
+                            )}
+
+                            {isAuthenticated() && (
+                                <li className="nav-item">
+                                    <span
+                                        className="nav-link"
+                                        style={{ cursor: "pointer", color: "#ffffff" }}
+                                        onClick={() =>
+                                            signout(() => {
+                                                history.push("/");
+                                            })
+                                        }
+                                    >
+                                        Signout
+                                    </span>
+                                </li>
+                            )}
+
                         </ul>
+
                     </div>
                 </div>
             </nav>

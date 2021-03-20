@@ -7,7 +7,7 @@ export default function AlertMessage({ msg, type }) {
             setShow(true);
             setInterval(() => {
                 setShow(false);
-            }, 2000);
+            }, 4000);
         }
     }, [msg]);
     return <Fragment>
