@@ -6,6 +6,7 @@ import SignupStepForm from './authentication/signup/SignupStepForm';
 import Navbar from "./components/Navbar";
 import AdminRoute from "./authentication/protectedRoutes/AdminRoute";
 import { NotFound } from "./404/NotFound";
+import SigninStepForm from "./authentication/signin/SigninStepForm";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Switch>
           <AdminRoute exact path='/' component={Home} />
           <Route exact path='/signup' component={SignupStepForm} />
+          <Route exact path='/signin' component={SigninStepForm} />
 
           <Route path="*" component={NotFound} />
         </Switch>

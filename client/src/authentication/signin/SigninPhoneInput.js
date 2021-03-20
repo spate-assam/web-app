@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 import AlertMessage from '../../components/AlertMessage';
 
-const PhoneInput = (props) => {
-	const { value, handleChange, uploadLocation } = props;
+const SigninPhoneInput = (props) => {
+	const { value, handleChange } = props;
 	const [errorMessage, setErrroMessage] = useState('');
 	const [successMessage, setSuccessMessage] = useState('');
 
@@ -15,7 +15,7 @@ const PhoneInput = (props) => {
 			})
 			.then(function (res) {
 				console.log(res);
-				if (res.status === 200) {
+				if(res.status === 200){
 					setSuccessMessage(res.data.success);
 				}
 			});
@@ -28,45 +28,19 @@ const PhoneInput = (props) => {
 
 			<div className="container">
 
-				<AlertMessage msg={errorMessage} type="danger" ></AlertMessage>
-				<AlertMessage msg={successMessage} type="success" ></AlertMessage>
+			<AlertMessage msg={errorMessage} type="danger" ></AlertMessage>
+            <AlertMessage msg={successMessage} type="success" ></AlertMessage>
 
 				<form>
 					<div className="mb-3">
-						<label className="form-label">Name</label>
-						<input
-							type="text"
-							value={value.name}
-							onChange={handleChange('name')}
-							className="form-control"
-							required="required"
-							placeholder="Enter name" />
-					</div>
-
-					<div className="mb-3">
 						<label className="form-label">Phone No.</label>
 						<input
-							type="tel"
+							type="number"
 							value={value.phone}
 							onChange={handleChange('phone')}
 							className="form-control"
 							required="required"
 							placeholder="Enter phone number" />
-					</div>
-
-					<div className="mb-3">
-						<label className="form-label">
-							<button onClick={uploadLocation} className="btn btn-outline-dark">
-								Upload Locatioon
-					</button>
-						</label>
-						<input
-							type="text"
-							value={value.default_loc}
-							onChange={handleChange('default_loc')}
-							className="form-control"
-							required="required"
-							placeholder="Upload your location" />
 					</div>
 
 					<div className="mb-3">
@@ -80,11 +54,11 @@ const PhoneInput = (props) => {
 					</div>
 
 					<button onClick={Continue} className="btn btn-outline-dark">
-						Sign Up
+						Send OTP
 					</button>
 				</form>
 
-				<p><Link className='mb-10' id='login_link' to="/signin">Already have an account? Log in</Link></p>
+				<p><Link id='login_link' to="/signin">Already have an account? Log in</Link></p>
 			</div>
 
 		</Fragment>
@@ -92,4 +66,4 @@ const PhoneInput = (props) => {
 	);
 }
 
-export default PhoneInput;
+export default SigninPhoneInput;

@@ -117,7 +117,7 @@ exports.admin_otp_verify = async (req, res) => {
 
                 res.cookie('INUNDATION', token, { httpOnly: true, maxAge: maxAge * 1000 });
 
-                return res.status(400).json({
+                return res.status(409).json({
                     user,
                     error: 'This phone is already registered!'
                 });
@@ -133,19 +133,19 @@ exports.admin_otp_verify = async (req, res) => {
                 const token = await createToken(newUser);
                 res.cookie('INUNDATION', token, { httpOnly: true, maxAge: maxAge * 1000 });
 
-                return res.json({
+                return res.status(200).json({
                     user: newUser,
                     success: 'User authenticated successfully!'
                 });
             }
         } else {
-            return res.json({
+            return res.status(400).json({
                 error: 'Please input the correct OTP!'
             });
         }
     } catch (err) {
         console.log(err);
-        return res.json({ error: 'Some error occured!' });
+        return res.status(400).json({ error: 'Some error occured!' });
     }
 };
 

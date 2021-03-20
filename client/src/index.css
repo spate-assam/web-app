@@ -3,6 +3,7 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: rgb(241, 234, 229);
 }
 
 code {
@@ -31,4 +32,10 @@ code {
     border-radius: 10px;
     font-size: 18px;
     color: rgb(241, 234, 232);
+}
+
+#login_link {
+    text-decoration: none;
+    color: rgb(16, 151, 204);
+    font-size: 25px;
 }

@@ -4,7 +4,7 @@ import { authenticate } from '../authorize';
 import { Redirect } from 'react-router-dom';
 import AlertMessage from '../../components/AlertMessage';
 
-function OtpVerify(props) {
+function SigninOTPVerify(props) {
 	const [error, setError] = useState({
 		error: '',
 		success: ''
@@ -18,30 +18,27 @@ function OtpVerify(props) {
 		props.prevStep();
 	};
 
-	const { phone, code, name, default_loc, role } = value;
-
-	console.log(phone, code, name, default_loc, role);
+	const { phone, code, role } = value;
 
 	const confirmOtp = () => {
 		axios.post('http://localhost:5000/api/admin/verifyOTP', {
 			phone: `${value.phone}`,
 			code: `${value.code}`,
-			username: `${value.name}`,
-			default_loc: `${value.default_loc}`,
-			role: `${value.role}`,
+			role: `${value.role}`
 		})
-			.then(function (res) {
+			.then(res => {
 				console.log(res);
-
-				if (res.data.user) {
+				if (res.status === 409) {
 					authenticate(res.data.user, () => {
 						console.log(res.data.user);
 						setRedirect(true);
-						setSuccessMessage(res.data.success);
-						setError({ ...error, success: res.data.user });
+						setSuccessMessage('User logged in successfully!');
+						setError({ ...error, success: res.data.error });
 					});
+				} else if (res.status === 200) {
+					setErrroMessage('User alreadys exists!');
 				} else {
-					setErrroMessage(res.error);
+					setErrroMessage('Some error occured!');
 				}
 			})
 			.catch(function (error) {
@@ -63,17 +60,6 @@ function OtpVerify(props) {
 
 				<form>
 					<div className="mb-3">
-						<label className="form-label">Name</label>
-						<input
-							type="text"
-							value={value.name}
-							onChange={handleChange('name')}
-							className="form-control"
-							required="required"
-							placeholder="Enter name" />
-					</div>
-
-					<div className="mb-3">
 						<label className="form-label">Phone No.</label>
 						<input
 							type="tel"
@@ -82,17 +68,6 @@ function OtpVerify(props) {
 							className="form-control"
 							required="required"
 							placeholder="Enter phone number" />
-					</div>
-
-					<div className="mb-3">
-						<label className="form-label">Default Location</label>
-						<input
-							type="text"
-							value={value.default_loc}
-							onChange={handleChange('default_loc')}
-							className="form-control"
-							required="required"
-							placeholder="Upload your location" />
 					</div>
 
 					<div className="mb-3">
@@ -118,19 +93,16 @@ function OtpVerify(props) {
 
 				</form>
 
-				<div class="d-grid gap-2 d-md-block">
-					<button onClick={back} className="btn btn-outline-dark m-2">
-						Back
+				<button onClick={back} className="btn btn-outline-dark">
+					Back
 				</button>
-					<button onClick={confirmOtp} className="btn btn-outline-dark m-3">
-						Confirm OTP
+				<button onClick={confirmOtp} className="btn btn-outline-dark">
+					Confirm OTP
 				</button>
-				</div>
-
 			</div>
 		</Fragment>
 
 	);
 }
 
-export default OtpVerify;
+export default SigninOTPVerify;
