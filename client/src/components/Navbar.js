@@ -12,9 +12,7 @@ const Navbar = ({ history }) => {
             <nav class="navbar-expand-lg navbar navbar-dark bg-dark">
                 <div class="container-fluid">
                     <span class="navbar-brand">
-                        <Link class="nav-link active" aria-current="page" to="/">
-                            <FontAwesomeIcon icon={faHouseUser} />
-                        </Link>
+                        <FontAwesomeIcon icon={faHouseUser} />
                     </span>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -23,7 +21,7 @@ const Navbar = ({ history }) => {
 
                         <ul class="navbar-nav">
 
-                            {isAuthenticated() && isAuthenticated().role === 1 && (
+                            {isAuthenticated() && (
                                 <li class="nav-item">
                                     <Link class="nav-link active" aria-current="page" to="/">Home</Link>
                                 </li>
@@ -52,19 +50,19 @@ const Navbar = ({ history }) => {
                             )}
 
                             {isAuthenticated() && (
-                                <li className="nav-item">
-                                    <span
-                                        className="nav-link"
-                                        style={{ cursor: "pointer", color: "#ffffff" }}
-                                        onClick={() =>
-                                            signout(() => {
-                                                history.push("/");
-                                            })
-                                        }
-                                    >
-                                        Signout
+                                    <li className="nav-item">
+                                        <span
+                                            className="nav-link"
+                                            style={{ cursor: "pointer", color: "#ffffff" }}
+                                            onClick={() =>
+                                                signout(() => {
+                                                    history.push("/");
+                                                })
+                                            }
+                                        >
+                                            Signout
                                     </span>
-                                </li>
+                                    </li>
                             )}
 
                         </ul>

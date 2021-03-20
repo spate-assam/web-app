@@ -5,7 +5,6 @@ const User = require('../model/user');
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken);
-console.log(accountSid, authToken);
 
 const maxAge = 3 * 24 * 60 * 60;
 const createToken = user => {

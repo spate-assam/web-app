@@ -45,7 +45,7 @@ const UserCollection = ({ users, floodedLocations }) => {
 
                 <button onClick={notifyUser} className="btn btn-warning m-2">
                     Notify all users
-            </button>
+                </button>
             </div>
 
         </Fragment >
