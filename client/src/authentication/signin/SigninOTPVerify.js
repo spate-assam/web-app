@@ -12,6 +12,7 @@ function SigninOTPVerify(props) {
 	const [errorMessage, setErrroMessage] = useState('');
 	const [successMessage, setSuccessMessage] = useState('');
 	const [redirect, setRedirect] = useState(false);
+	const [redirectAdmin, setRedirectAdmin] = useState(false);
 	const { value, handleChange } = props;
 	const back = (e) => {
 		e.preventDefault();
@@ -21,10 +22,10 @@ function SigninOTPVerify(props) {
 	const { phone, code, role } = value;
 
 	const confirmOtp = () => {
-		axios.post('http://localhost:5000/api/admin/verifyOTP', {
+		axios.post('http://localhost:5000/api/verifyOTP', {
 			phone: `${value.phone}`,
 			code: `${value.code}`,
-			role: `${value.role}`
+			// role: `${value.role}`
 		})
 			.then(res => {
 				console.log(res);
@@ -32,6 +33,9 @@ function SigninOTPVerify(props) {
 				if (res.status === 201) {
 					authenticate(res.data.user, () => {
 						console.log(res.data.user);
+						if (res.data.user.role === 1) {
+							setRedirectAdmin(true);
+						}
 						setRedirect(true);
 						setSuccessMessage('User logged in successfully!');
 						setError({ ...error, success: res.data.error });
@@ -55,6 +59,10 @@ function SigninOTPVerify(props) {
 				<Redirect to='/' />
 			)}
 
+			{redirectAdmin && (
+				<Redirect to='/admin' />
+			)}
+
 			<div className="container">
 				<AlertMessage msg={errorMessage} type="danger" ></AlertMessage>
 				<AlertMessage msg={successMessage} type="success" ></AlertMessage>
@@ -71,7 +79,7 @@ function SigninOTPVerify(props) {
 							placeholder="Enter phone number" />
 					</div>
 
-					<div className="mb-3">
+					{/* <div className="mb-3">
 						<label className="form-label">Role</label>
 						<input
 							type="text"
@@ -79,7 +87,7 @@ function SigninOTPVerify(props) {
 							className="form-control"
 							required="required"
 							placeholder="Role" />
-					</div>
+					</div> */}
 
 					<div className="mb-3">
 						<label className="form-label">OTP</label>

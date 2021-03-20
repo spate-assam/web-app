@@ -37,7 +37,7 @@ exports.verifyOTP = async (req, res) => {
     try {
         console.log(req.body);
         const { phone, code, name, default_loc } = req.body;
-        const data = await client.verify.services('VAc9f4c6e99c3103c020c574b42ca391a6').verificationChecks.create({
+        const data = await client.verify.services(process.env.TWILIO_SERVICE_ID).verificationChecks.create({
             to: `+91${phone}`,
             code
         });
@@ -51,7 +51,7 @@ exports.verifyOTP = async (req, res) => {
 
                 res.cookie('INUNDATION', token, { httpOnly: true, maxAge: maxAge * 1000 });
 
-                return res.status(400).json({
+                return res.status(201).json({
                     user,
                     error: 'This phone is already registered!'
                 });

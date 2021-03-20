@@ -10,7 +10,7 @@ const SigninPhoneInput = (props) => {
 	const [successMessage, setSuccessMessage] = useState('');
 
 	const Continue = (e) => {
-		axios.post('http://localhost:5000/api/admin/signup', {
+		axios.post('http://localhost:5000/api/signup', {
 				phone: `${value.phone}`
 			})
 			.then(function (res) {
@@ -43,7 +43,7 @@ const SigninPhoneInput = (props) => {
 							placeholder="Enter phone number" />
 					</div>
 
-					<div className="mb-3">
+					{/* <div className="mb-3">
 						<label className="form-label">Role</label>
 						<input
 							type="text"
@@ -51,7 +51,7 @@ const SigninPhoneInput = (props) => {
 							className="form-control"
 							required="required"
 							placeholder="Role" />
-					</div>
+					</div> */}
 
 					<button onClick={Continue} className="btn btn-outline-dark">
 						Send OTP

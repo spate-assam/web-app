@@ -23,12 +23,12 @@ function OtpVerify(props) {
 	console.log(phone, code, name, default_loc, role);
 
 	const confirmOtp = () => {
-		axios.post('http://localhost:5000/api/admin/verifyOTP', {
+		axios.post('http://localhost:5000/api/verifyOTP', {
 			phone: `${value.phone}`,
 			code: `${value.code}`,
 			username: `${value.name}`,
 			default_loc: `${value.default_loc}`,
-			role: `${value.role}`,
+			// role: `${value.role}`,
 		})
 			.then(function (res) {
 				console.log(res);
@@ -95,7 +95,7 @@ function OtpVerify(props) {
 							placeholder="Upload your location" />
 					</div>
 
-					<div className="mb-3">
+					{/* <div className="mb-3">
 						<label className="form-label">Role</label>
 						<input
 							type="text"
@@ -103,7 +103,7 @@ function OtpVerify(props) {
 							className="form-control"
 							required="required"
 							placeholder="Role" />
-					</div>
+					</div> */}
 
 					<div className="mb-3">
 						<label className="form-label">OTP</label>

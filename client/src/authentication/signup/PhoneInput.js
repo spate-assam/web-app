@@ -10,7 +10,7 @@ const PhoneInput = (props) => {
 	const [successMessage, setSuccessMessage] = useState('');
 
 	const Continue = (e) => {
-		axios.post('http://localhost:5000/api/admin/signup', {
+		axios.post('http://localhost:5000/api/signup', {
 				phone: `${value.phone}`
 			})
 			.then(function (res) {
@@ -69,7 +69,7 @@ const PhoneInput = (props) => {
 							placeholder="Upload your location" />
 					</div>
 
-					<div className="mb-3">
+					{/* <div className="mb-3">
 						<label className="form-label">Role</label>
 						<input
 							type="text"
@@ -77,7 +77,7 @@ const PhoneInput = (props) => {
 							className="form-control"
 							required="required"
 							placeholder="Role" />
-					</div>
+					</div> */}
 
 					<button onClick={Continue} className="btn btn-outline-dark">
 						Sign Up
