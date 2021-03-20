@@ -12,7 +12,9 @@ const Navbar = ({ history }) => {
             <nav class="navbar-expand-lg navbar navbar-dark bg-dark">
                 <div class="container-fluid">
                     <span class="navbar-brand">
-                        <FontAwesomeIcon icon={faHouseUser} />
+                        <Link class="nav-link active" aria-current="page" to="/">
+                            <FontAwesomeIcon icon={faHouseUser} />
+                        </Link>
                     </span>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>

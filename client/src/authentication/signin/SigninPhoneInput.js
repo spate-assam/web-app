@@ -58,7 +58,7 @@ const SigninPhoneInput = (props) => {
 					</button>
 				</form>
 
-				<p><Link id='login_link' to="/signin">Already have an account? Log in</Link></p>
+				<p><Link id='login_link' to="/signup">Don't have an account? Signup here</Link></p>
 			</div>
 
 		</Fragment>

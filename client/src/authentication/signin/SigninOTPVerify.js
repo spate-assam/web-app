@@ -28,7 +28,8 @@ function SigninOTPVerify(props) {
 		})
 			.then(res => {
 				console.log(res);
-				if (res.status === 409) {
+				console.log(res.status);
+				if (res.status === 201) {
 					authenticate(res.data.user, () => {
 						console.log(res.data.user);
 						setRedirect(true);
