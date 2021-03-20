@@ -2,12 +2,15 @@ import React, { Fragment, useState } from 'react';
 import axios from 'axios';
 import { authenticate } from '../authorize';
 import { Redirect } from 'react-router-dom';
+import AlertMessage from '../../components/AlertMessage';
 
 function OtpVerify(props) {
 	const [error, setError] = useState({
 		error: '',
 		success: ''
 	});
+	const [errorMessage, setErrroMessage] = useState('');
+	const [successMessage, setSuccessMessage] = useState('');
 	const [redirect, setRedirect] = useState(false);
 	const { value, handleChange } = props;
 	const back = (e) => {
@@ -31,17 +34,23 @@ function OtpVerify(props) {
 			.then(function (res) {
 				console.log(res);
 
-				authenticate(res.data.user, () => {
-					console.log(res.data.user);
-					setRedirect(true);
-					setError({ ...error, success: res.data.user });
-				});
+				if (res.data.user) {
+					authenticate(res.data.user, () => {
+						console.log(res.data.user);
+						setRedirect(true);
+						setSuccessMessage(res.data.success);
+						setError({ ...error, success: res.data.user });
+					});
+				} else {
+					setErrroMessage(res.error);
+				}
 			})
 			.catch(function (error) {
 				console.log(error.response);
 				setError({ ...error, error: error.response.data.msg });
 			});
 	};
+
 	return (
 		<Fragment>
 
@@ -50,6 +59,9 @@ function OtpVerify(props) {
 			)}
 
 			<div className="container">
+			<AlertMessage msg={errorMessage} type="danger" ></AlertMessage>
+            <AlertMessage msg={successMessage} type="success" ></AlertMessage>
+			
 				<form>
 					<div className="mb-3">
 						<label className="form-label">Name</label>
@@ -95,14 +107,14 @@ function OtpVerify(props) {
 					</div>
 
 					<div className="mb-3">
-						<label className="form-label">Code</label>
+						<label className="form-label">OTP</label>
 						<input
 							type="text"
 							value={value.code}
 							onChange={handleChange('code')}
 							className="form-control"
 							required="required"
-							placeholder="Role" />
+							placeholder="Enter OTP" />
 					</div>
 
 				</form>

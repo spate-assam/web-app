@@ -1,9 +1,13 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+import AlertMessage from '../../components/AlertMessage';
+
 const PhoneInput = (props) => {
 	const { value, handleChange } = props;
+	const [errorMessage, setErrroMessage] = useState('');
+	const [successMessage, setSuccessMessage] = useState('');
 
 	const Continue = (e) => {
 		axios
@@ -12,6 +16,9 @@ const PhoneInput = (props) => {
 			})
 			.then(function (res) {
 				console.log(res);
+				if(res.status === 200){
+					setSuccessMessage(res.data.success);
+				}
 			});
 
 		e.preventDefault();
@@ -21,6 +28,10 @@ const PhoneInput = (props) => {
 		<Fragment>
 
 			<div className="container">
+
+			<AlertMessage msg={errorMessage} type="danger" ></AlertMessage>
+            <AlertMessage msg={successMessage} type="success" ></AlertMessage>
+
 				<form>
 					<div className="mb-3">
 						<label className="form-label">Name</label>
