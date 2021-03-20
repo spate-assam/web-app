@@ -21,9 +21,15 @@ const Navbar = ({ history }) => {
 
                         <ul class="navbar-nav">
 
-                            {isAuthenticated() && (
+                            {/* {isAuthenticated() && ( */}
                                 <li class="nav-item">
                                     <Link class="nav-link active" aria-current="page" to="/">Home</Link>
+                                </li>
+                            {/* )} */}
+
+                            {isAuthenticated() && isAuthenticated().role === 1 && (
+                                <li class="nav-item">
+                                    <Link class="nav-link active" aria-current="page" to="/manage">Manage</Link>
                                 </li>
                             )}
 
@@ -50,19 +56,19 @@ const Navbar = ({ history }) => {
                             )}
 
                             {isAuthenticated() && (
-                                    <li className="nav-item">
-                                        <span
-                                            className="nav-link"
-                                            style={{ cursor: "pointer", color: "#ffffff" }}
-                                            onClick={() =>
-                                                signout(() => {
-                                                    history.push("/");
-                                                })
-                                            }
-                                        >
-                                            Signout
+                                <li className="nav-item">
+                                    <span
+                                        className="nav-link"
+                                        style={{ cursor: "pointer", color: "#ffffff" }}
+                                        onClick={() =>
+                                            signout(() => {
+                                                history.push("/");
+                                            })
+                                        }
+                                    >
+                                        Signout
                                     </span>
-                                    </li>
+                                </li>
                             )}
 
                         </ul>

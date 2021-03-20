@@ -19,7 +19,7 @@ const App = () => {
           <Route exact path='/signup' component={SignupStepForm} />
           <Route exact path='/signin' component={SigninStepForm} />
           <PrivateRoute exact path='/' component={Dashboard} />
-          <AdminRoute exact path='/admin' component={Home} />
+          <AdminRoute exact path='/manage' component={Home} />
           <Route path="*" component={NotFound} />
         </Switch>
       </BrowserRouter>

@@ -60,7 +60,7 @@ function SigninOTPVerify(props) {
 			)}
 
 			{redirectAdmin && (
-				<Redirect to='/admin' />
+				<Redirect to='/' />
 			)}
 
 			<div className="container">

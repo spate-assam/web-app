@@ -40,12 +40,12 @@
 #     "default_long": "26.158694399999998" 
 # }
 
-# POST http://localhost:5000/api/set/locations
-# Content-Type: application/json
+POST http://localhost:5000/api/set/locations
+Content-Type: application/json
 
-# {
-#     "coordinates": "26.5260594,90.7961624"
-# }
+{
+    "coordinates": "26.4215959,90.976336"
+}
 
 # POST http://localhost:5000/api/send-aware-message
 # Content-Type: application/json

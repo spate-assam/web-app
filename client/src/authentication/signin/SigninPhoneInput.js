@@ -53,7 +53,7 @@ const SigninPhoneInput = (props) => {
 							placeholder="Role" />
 					</div> */}
 
-					<button onClick={Continue} className="btn btn-outline-dark">
+					<button onClick={Continue} className="btn btn-dark">
 						Send OTP
 					</button>
 				</form>
