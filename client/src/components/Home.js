@@ -30,7 +30,6 @@ const Home = () => {
     return (
         <Fragment>
             <div className="container">
-                <h4>Home Page</h4>
                 <GoogleMap
                     floodedLocations={floodedLocations}
                     users={users}
