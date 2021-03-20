@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHouseUser } from '@fortawesome/free-solid-svg-icons'
 
 import { isAuthenticated, signout } from '../authentication/authorize';
 
@@ -9,7 +11,9 @@ const Navbar = ({ history }) => {
         <Fragment>
             <nav class="navbar-expand-lg navbar navbar-dark bg-dark">
                 <div class="container-fluid">
-                    <span class="navbar-brand">Navbar</span>
+                    <span class="navbar-brand">
+                        <FontAwesomeIcon icon={faHouseUser} />
+                    </span>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>

@@ -33,3 +33,8 @@
     top: 45%;
     width: 75%;
 }
+
+#link_to_home {
+    color: #da3d0e;
+    text-decoration: none;
+}

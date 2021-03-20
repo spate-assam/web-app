@@ -18,7 +18,7 @@ export const NotFound = ({ query, handleChange, city }) => {
                         Never existed in the first place?
                     </p>
                     <p>
-                        Go back to <Link className='text-primary' id="btn_search" to="/">home</Link>
+                        Go back to <Link id="link_to_home" to="/">home</Link>
                     </p>
                 </div>
             </div>
