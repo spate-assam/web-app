@@ -5,3 +5,4 @@ node_modules
 .distance-matrix.js
 .twilio
 ./bulk-message.js
+.env
